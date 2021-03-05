@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flappy_bird/utils/speed.dart';
 import 'package:flappy_bird/utils/bird_position.dart';
 import 'package:flappy_bird/utils/score.dart';
+import 'package:flappy_bird/utils/custom.dart';
 import 'package:provider/provider.dart';
 import 'package:flappy_bird/bird.dart';
 
@@ -22,11 +23,11 @@ class _PlayState extends State<Play> with SingleTickerProviderStateMixin {
 
   int currentPoint = 0;
   int currentOffSet = 0;
-  double startOffSet = 200.0;
+  double startOffSet = 200;
   int pipe = 300;
   int highScore = 0;
   double height = 600.0;
-  double width = 300.0;
+  double width = 350.0;
   double range = -100.0;
 
   bool isStart = false;
@@ -55,13 +56,11 @@ class _PlayState extends State<Play> with SingleTickerProviderStateMixin {
       (startOffSet + 25 + (52 + 100) * (currentPoint)).toDouble();
 
   double birdPos() {
-    if (isStart == false) {
-      return height / 2 - 50;
-    }
+    if (isStart == false) return height / 2 - 50;
     if (isTap) {
       return 0;
     } else {
-      return height - 300;
+      return height - 130;
     }
   }
 
@@ -139,9 +138,7 @@ class _PlayState extends State<Play> with SingleTickerProviderStateMixin {
 
     return GestureDetector(
         onTap: () {
-          if (isStart == false) {
-            isStart = true;
-          }
+          if (isStart == false) isStart = true;
           isTap = true;
           Future.delayed(Duration(milliseconds: 150), () {
             isTap = false;
@@ -188,8 +185,8 @@ class _PlayState extends State<Play> with SingleTickerProviderStateMixin {
                       }),
                     ),
                   ),
-                  AnimatedPositioned(
-                    duration: Duration(milliseconds: 500),
+                  AnimatedPositionedCustom(
+                    duration: Duration(milliseconds: 1500),
                     top: birdPos(),
                     left: 80,
                     child: Opacity(opacity: isStart ? 1 : 0, child: Bird()),

@@ -9,6 +9,6 @@ Future<void> setHighScore(int score) async {
 Future<int> getHighScore() async {
   SharedPreferences instance = await SharedPreferences.getInstance();
   final key = 'highScore';
-  int value = instance.getInt(key);
+  int value = instance.getInt(key) ?? 0;
   return value;
 }
