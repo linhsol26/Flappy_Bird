@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Base extends StatelessWidget {
   final double value;
 
-  Base(this.value);
+  const Base({Key key, this.value}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
