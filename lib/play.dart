@@ -9,6 +9,7 @@ import 'package:flappy_bird/utils/speed.dart';
 import 'package:flappy_bird/utils/bird_position.dart';
 import 'package:flappy_bird/utils/score.dart';
 import 'package:provider/provider.dart';
+import 'package:flappy_bird/bird.dart';
 
 class Play extends StatefulWidget {
   @override
@@ -103,11 +104,11 @@ class _PlayState extends State<Play> with SingleTickerProviderStateMixin {
             }
           }
 
-          if (isEnd) {
+          if (!isEnd) {
+            currentOffSet++;
+          } else {
             isStart = false;
             isEnd = false;
-          } else {
-            currentOffSet++;
           }
 
           if (_birdPosition.position == height - 130) {
@@ -135,13 +136,14 @@ class _PlayState extends State<Play> with SingleTickerProviderStateMixin {
         _controller.jumpTo(0);
       });
     }
+
     return GestureDetector(
         onTap: () {
           if (isStart == false) {
             isStart = true;
           }
           isTap = true;
-          Future.delayed(Duration(milliseconds: 200), () {
+          Future.delayed(Duration(milliseconds: 150), () {
             isTap = false;
           });
         },
@@ -185,6 +187,12 @@ class _PlayState extends State<Play> with SingleTickerProviderStateMixin {
                         }
                       }),
                     ),
+                  ),
+                  AnimatedPositioned(
+                    duration: Duration(milliseconds: 500),
+                    top: birdPos(),
+                    left: 80,
+                    child: Opacity(opacity: isStart ? 1 : 0, child: Bird()),
                   ),
                   Center(
                     child: Message(

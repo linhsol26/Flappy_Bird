@@ -18,7 +18,9 @@ class Message extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            Score(score: score),
+            Score(
+              score: score,
+            ),
           ],
         ));
   }

@@ -9,7 +9,7 @@ class BirdPosition extends ChangeNotifier {
     notifyListeners();
   }
 
-  changePositionListener(double pos) {
+  changePositionNotListener(double pos) {
     _position = pos;
   }
 }

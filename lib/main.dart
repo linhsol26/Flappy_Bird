@@ -12,7 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flappy Bird',
+      debugShowCheckedModeBanner: false,
       home: ChangeNotifierProvider(
         create: (context) => BirdPosition(),
         child: Play(),
